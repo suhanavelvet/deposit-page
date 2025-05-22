@@ -9,7 +9,6 @@
       padding: 2em;
       min-height: 100vh;
       margin: 0;
-      /* 活潑漸層背景 */
       background: linear-gradient(135deg, #f7e8ff 0%, #c2e9fb 100%);
     }
     .container {
@@ -29,9 +28,7 @@
       display: flex; align-items: center; justify-content: center;
       gap: 0.6em;
     }
-    h2 .dice {
-      font-size: 1.3em;
-    }
+    h2 .dice { font-size: 1.3em; }
     .subtitle, .subtitle-hindi {
       margin-bottom: 1em;
       font-size: 1.1em;
@@ -125,6 +122,14 @@
       from { opacity: 0; transform: translateY(30px);}
       to { opacity: 1; transform: translateY(0);}
     }
+    #reply code {
+      background: #f3e9ff;
+      padding: 0.2em 0.5em;
+      border-radius: 0.3em;
+      display: inline-block;
+      font-size: 1.13em;
+      margin: 0.25em 0;
+    }
   </style>
 </head>
 <body>
@@ -154,9 +159,10 @@
       Deposit Amount (USDT) / जमा राशि (USDT)
     </label>
     <input type="number" id="amount" placeholder="Enter amount / राशि दर्ज करें" />
-    <button onclick="alert('After entering the amount, please contact customer support or send a screenshot of this page to the admin.\n\nराशि दर्ज करने के बाद, कृपया कस्टमर सपोर्ट से संपर्क करें या इस पृष्ठ का स्क्रीनशॉट एडमिन को भेजें।')">
+    <button id="submit-btn">
       Submit / जमा करें
     </button>
+    <div id="reply" style="margin-top:1.5em;font-size:1.1em;font-weight:bold;color:#278a24;text-align:center;display:none;"></div>
   </div>
 </div>
 <script>
@@ -191,6 +197,24 @@
       </div>
     </div>
   `;
+
+  // 新增回函&TG指令功能
+  document.getElementById("submit-btn").onclick = function() {
+    const amount = document.getElementById("amount").value;
+    const no = index;
+    const tgCmd = `/deposit ${amount} ${no}`;
+    document.getElementById("reply").style.display = "block";
+    document.getElementById("reply").innerHTML =
+      "Please confirm that you have transferred USDT to the above address.<br>" +
+      "We will credit your account as soon as we receive your deposit.<br><br>" +
+      "<b>To speed up the process, please copy and send the following command to our Telegram bot:</b><br>" +
+      `<code>${tgCmd}</code><br><br>` +
+      "कृपया सुनिश्चित करें कि आपने ऊपर दिए गए पते पर USDT ट्रांसफर कर दिया है।<br>" +
+      "जैसे ही हमें आपका डिपॉजिट मिलेगा, हम तुरंत आपका अकाउंट क्रेडिट करेंगे।<br><br>" +
+      "<b>प्रक्रिया को तेज़ करने के लिए, कृपया नीचे दिए गए कमांड को कॉपी करके हमारे Telegram बोट को भेजें:</b><br>" +
+      `<code>${tgCmd}</code>`;
+    document.getElementById("amount").value = "";
+  }
 </script>
 </body>
 </html>
