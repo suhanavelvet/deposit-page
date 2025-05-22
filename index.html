@@ -4,24 +4,135 @@
   <meta charset="UTF-8" />
   <title>SICBO GAME Deposit Page / SICBO गेम जमा पृष्ठ</title>
   <style>
-    body { font-family: "Noto Sans", Arial, sans-serif; padding: 2em; background: #f6f6f9;}
-    .container {max-width:520px;margin:auto;background:#fff;padding:2em 2em 2.5em 2em;border-radius:1em;box-shadow:0 0 20px #ddd;}
-    h2 {margin-bottom:1em;}
-    .subtitle, .subtitle-hindi { margin-bottom:1em; font-size:1.1em; color:#222; line-height:1.6;}
-    .address-block { margin-bottom:2em; }
-    .address { font-size: 1.3em; font-weight: bold; background: #fff; padding: 0.7em; border-radius: 0.3em; word-break:break-all; }
-    .qrcode { margin: 2em 0 2em 0; }
-    .warn, .warn-hindi { color: #c00; font-weight: bold; margin: 1em 0 1em 0; line-height:1.6;}
-    label {display:block;margin-bottom:0.5em;}
-    input[type="number"] {margin-top:0.3em;}
-    button {margin-top:1em;font-size:1em;padding:0.5em 1.5em;}
+    body {
+      font-family: "Noto Sans", Arial, sans-serif;
+      padding: 2em;
+      min-height: 100vh;
+      margin: 0;
+      /* 活潑漸層背景 */
+      background: linear-gradient(135deg, #f7e8ff 0%, #c2e9fb 100%);
+    }
+    .container {
+      max-width: 520px;
+      margin: 2em auto;
+      background: #fff9fc;
+      padding: 2.5em 2em 2.5em 2em;
+      border-radius: 1.3em;
+      box-shadow: 0 6px 32px #aaa6, 0 1.5px 4px #3331;
+      position: relative;
+    }
+    h2 {
+      margin-bottom: 1em;
+      letter-spacing: 1.5px;
+      font-size: 2em;
+      color: #7c31e8;
+      display: flex; align-items: center; justify-content: center;
+      gap: 0.6em;
+    }
+    h2 .dice {
+      font-size: 1.3em;
+    }
+    .subtitle, .subtitle-hindi {
+      margin-bottom: 1em;
+      font-size: 1.1em;
+      color: #222;
+      line-height: 1.6;
+      text-align: center;
+    }
+    .address-block {
+      margin-bottom: 2em;
+      background: #f7f3ff;
+      border-radius: 0.7em;
+      box-shadow: 0 1px 4px #ccc3;
+      padding: 1.2em;
+      text-align: center;
+      animation: fadein 1.2s;
+    }
+    .address {
+      font-size: 1.3em;
+      font-weight: bold;
+      background: #e3e7fb;
+      padding: 0.8em;
+      border-radius: 0.5em;
+      word-break: break-all;
+      display: block;
+      margin: 0.5em auto 1.3em auto;
+      box-shadow: 0 2px 6px #b6b1fd5c;
+    }
+    .qrcode img {
+      margin: 0.5em auto 0.5em auto;
+      display: block;
+      border-radius: 0.5em;
+      box-shadow: 0 2px 10px #d1c6e5;
+      max-width: 220px;
+      max-height: 220px;
+      transition: transform 0.22s;
+    }
+    .qrcode img:hover {
+      transform: scale(1.07) rotate(-3deg);
+    }
+    .warn, .warn-hindi {
+      color: #be102b;
+      font-weight: bold;
+      margin: 1em 0 1em 0;
+      line-height: 1.5;
+      text-align: center;
+      font-size: 1.07em;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5em;
+      text-align: center;
+      font-weight: bold;
+      color: #6b259e;
+      letter-spacing: 1px;
+    }
+    input[type="number"] {
+      margin-top: 0.3em;
+      font-size: 1.18em;
+      border-radius: 0.5em;
+      border: 1.2px solid #bc7aff;
+      padding: 0.5em;
+      width: 90%;
+      text-align: center;
+      transition: border 0.2s;
+    }
+    input[type="number"]:focus {
+      outline: none;
+      border: 1.7px solid #7127bf;
+      background: #f3e9ff;
+    }
+    button {
+      margin-top: 1em;
+      font-size: 1.07em;
+      padding: 0.6em 2em;
+      border-radius: 2em;
+      background: linear-gradient(90deg,#7c31e8 60%, #42c6ff 100%);
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      box-shadow: 0 3px 16px #7c31e82a;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: background 0.2s, box-shadow 0.22s, transform 0.22s;
+    }
+    button:hover {
+      background: linear-gradient(90deg,#42c6ff 0%, #7c31e8 100%);
+      box-shadow: 0 6px 20px #7c31e84d;
+      transform: scale(1.06);
+    }
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(30px);}
+      to { opacity: 1; transform: translateY(0);}
+    }
   </style>
 </head>
 <body>
 <div class="container">
   <h2>
-    SICBO GAME Deposit Page<br/>
-    SICBO गेम जमा पृष्ठ
+    <span class="dice">🎲</span>
+    SICBO GAME Deposit Page
+    <span class="dice">💰</span>
   </h2>
   <div class="subtitle">
     Double check the QR code and address before sending any funds.
@@ -38,31 +149,30 @@
     कृपया सुनिश्चित करें कि वॉलेट पता और QR कोड सही हैं!<br>
     किसी और का जमा पृष्ठ उपयोग न करें।
   </div>
-  <div style="margin-top:2em;">
+  <div style="margin-top:2em;text-align:center;">
     <label for="amount">
       Deposit Amount (USDT) / जमा राशि (USDT)
     </label>
-    <input type="number" id="amount" placeholder="Enter amount / राशि दर्ज करें" style="padding:0.5em;font-size:1.2em;width:90%;" />
+    <input type="number" id="amount" placeholder="Enter amount / राशि दर्ज करें" />
     <button onclick="alert('After entering the amount, please contact customer support or send a screenshot of this page to the admin.\n\nराशि दर्ज करने के बाद, कृपया कस्टमर सपोर्ट से संपर्क करें या इस पृष्ठ का स्क्रीनशॉट एडमिन को भेजें।')">
       Submit / जमा करें
     </button>
   </div>
 </div>
 <script>
-  // 12 addresses & QR images，依你圖片順序100%對應
   const addresses = [
-    { addr: "TUJCqr2sCSgcBUrotRTtpjeJoWsR6KDnP6",    qr: "https://i.postimg.cc/G8ZSWqKJ/1.jpg" },
-    { addr: "TSN3pesxHUgEQPbxP8JrXdfRMLjV4ebuMG",    qr: "https://i.postimg.cc/hzJ5ZHLt/2.jpg" },
-    { addr: "TQ2ty2HKtNmwUvu4WLJKk1yfVWmWYi4sJ8",    qr: "https://i.postimg.cc/9wZNCZN3/3.jpg" },
-    { addr: "TEkJ7BQT4VjHYUU9eAo9RjGXZRMVDM4KpZ",    qr: "https://i.postimg.cc/6TvPrx6H/4.jpg" },
-    { addr: "TEjuiWgUTRFyDdL86TgoaVqTmNdyD1Sgsx",    qr: "https://i.postimg.cc/TKCNdRQP/5.jpg" },
-    { addr: "TYE4FMXGPREzLu5p234oMwbyyiCnQY9A8s",    qr: "https://i.postimg.cc/nCKwWKDB/6.jpg" },
-    { addr: "TGkNU2rDADm7RjTZH8797zFXhmr5JGyuxX",    qr: "https://i.postimg.cc/hXS3RJLw/7.jpg" },
-    { addr: "TSov2GeUj3mv6jqmjiGXJgFVpWbA56SdQw",    qr: "https://i.postimg.cc/PLJ3NBFQ/8.jpg" },
-    { addr: "THUkm4qEuuxogd6FRtm5jWkiwznjJLFNaT",    qr: "https://i.postimg.cc/d7fWC4bP/9.jpg" },
-    { addr: "TPZHdSd8tucwf3gWKbccdNorfAM5y4TNY5",    qr: "https://i.postimg.cc/47hWQpGK/10.jpg" },
-    { addr: "TDn6PnLoLUEkHXeLhidLBZkG3GGAE3P9rx",    qr: "https://i.postimg.cc/zHZ0t3Dx/11.jpg" },
-    { addr: "TEmSZTCPNX39gV6TzjkV6E1VfWDSki3ZH2",    qr: "https://i.postimg.cc/CnGJWYzS/12.jpg" }
+    { addr: "TUJCqr2sCSgcBUrotRTtpjeJoWsR6KDnP6", qr: "https://i.postimg.cc/G8ZSWqKJ/1.jpg" },
+    { addr: "TSN3pesxHUgEQPbxP8JrXdfRMLjV4ebuMG", qr: "https://i.postimg.cc/hzJ5ZHLt/2.jpg" },
+    { addr: "TQ2ty2HKtNmwUvu4WLJKk1yfVWmWYi4sJ8", qr: "https://i.postimg.cc/9wZNCZN3/3.jpg" },
+    { addr: "TEkJ7BQT4VjHYUU9eAo9RjGXZRMVDM4KpZ", qr: "https://i.postimg.cc/6TvPrx6H/4.jpg" },
+    { addr: "TEjuiWgUTRFyDdL86TgoaVqTmNdyD1Sgsx", qr: "https://i.postimg.cc/TKCNdRQP/5.jpg" },
+    { addr: "TYE4FMXGPREzLu5p234oMwbyyiCnQY9A8s", qr: "https://i.postimg.cc/nCKwWKDB/6.jpg" },
+    { addr: "TGkNU2rDADm7RjTZH8797zFXhmr5JGyuxX", qr: "https://i.postimg.cc/hXS3RJLw/7.jpg" },
+    { addr: "TSov2GeUj3mv6jqmjiGXJgFVpWbA56SdQw", qr: "https://i.postimg.cc/PLJ3NBFQ/8.jpg" },
+    { addr: "THUkm4qEuuxogd6FRtm5jWkiwznjJLFNaT", qr: "https://i.postimg.cc/d7fWC4bP/9.jpg" },
+    { addr: "TPZHdSd8tucwf3gWKbccdNorfAM5y4TNY5", qr: "https://i.postimg.cc/47hWQpGK/10.jpg" },
+    { addr: "TDn6PnLoLUEkHXeLhidLBZkG3GGAE3P9rx", qr: "https://i.postimg.cc/zHZ0t3Dx/11.jpg" },
+    { addr: "TEmSZTCPNX39gV6TzjkV6E1VfWDSki3ZH2", qr: "https://i.postimg.cc/CnGJWYzS/12.jpg" }
   ];
 
   function getQueryParam(param) {
@@ -77,11 +187,10 @@
       <strong>Wallet Address / वॉलेट पता:</strong><br/>
       <span class="address">${addr}</span>
       <div class="qrcode">
-        <img src="${qr}" alt="QR Code" style="max-width:280px;max-height:280px;display:block;margin:auto;">
+        <img src="${qr}" alt="QR Code" style="max-width:220px;max-height:220px;display:block;margin:auto;">
       </div>
     </div>
   `;
 </script>
 </body>
 </html>
-
