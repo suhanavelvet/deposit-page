@@ -189,6 +189,7 @@ function getQueryParam(param) {
 // 這裡 index 就是你網頁網址裡 no=幾，那一頁分配的號碼
 let index = parseInt(getQueryParam("no"));
 if (isNaN(index) || index < 0 || index >= addresses.length) index = 0;
+console.log("DEBUG index: ", index);
 
 // 顯示對應的錢包地址與QR
 const {addr, qr} = addresses[index];
