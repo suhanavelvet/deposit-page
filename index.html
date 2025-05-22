@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SICBO GAME Deposit Page / SICBO गेम जमा पृष्ठ</title>
+  <style>
+    body { font-family: "Noto Sans", Arial, sans-serif; padding: 2em; background: #f6f6f9;}
+    .address { font-size: 1.3em; font-weight: bold; background: #fff; padding: 0.7em; border-radius: 0.3em; }
+    .qrcode { margin: 2em 0; }
+    .warn { color: #c00; font-weight: bold; margin: 1em 0;}
+    .container {max-width:500px;margin:auto;background:#fff;padding:2em 2em 2.5em 2em;border-radius:1em;box-shadow:0 0 20px #ddd;}
+    .subtitle { margin-bottom: 1.2em; font-size:1.1em; color:#222;}
+  </style>
+</head>
+<body>
+<div class="container">
+  <h2>
+    SICBO GAME Deposit Page<br/>
+    SICBO गेम जमा पृष्ठ
+  </h2>
+  <div class="subtitle">
+    Please use your assigned wallet address below to complete your deposit. Double check the QR code and address before sending any funds.<br/>
+    कृपया नीचे दिए गए अपने विशेष वॉलेट पते का उपयोग करके जमा करें। पैसे भेजने से पहले QR कोड और पते की अच्छी तरह से जाँच करें।
+  </div>
+  <div id="main"></div>
+  <div class="warn">
+    Please make sure the wallet address and QR code are correct! Do not use someone else's deposit page.<br/>
+    कृपया सुनिश्चित करें कि वॉलेट पता और QR कोड सही हैं! किसी और का जमा पृष्ठ उपयोग न करें।
+  </div>
+  <div style="margin-top:2em;">
+    <label for="amount">
+      Deposit Amount (USDT) / जमा राशि (USDT)
+    </label><br/>
+    <input type="number" id="amount" placeholder="Enter amount / राशि दर्ज करें" style="padding:0.5em;font-size:1.2em;width:90%;" />
+    <button onclick="alert('After entering the amount, please contact customer support or send a screenshot of this page to the admin.\n\nराशि दर्ज करने के बाद, कृपया कस्टमर सपोर्ट से संपर्क करें या इस पृष्ठ का स्क्रीनशॉट एडमिन को भेजें।')" style="margin-top:1em;font-size:1em;padding:0.5em 1.5em;">
+      Submit / जमा करें
+    </button>
+  </div>
+</div>
+
+<script>
+  // 12 addresses & QR images
+  const addresses = [
+    {
+      addr: "TUJCqr2sCSgcBUrotRTtpjeJoWsR6KDnP6",
+      qr: "https://drive.google.com/uc?export=view&id=1UWSG6W0jSgVrqrw_cwEradSThJ_7OBlI"
+    },
+    {
+      addr: "TPZHdSd8tucwf3gWKbccdNorfAM5y4TNY5",
+      qr: "https://drive.google.com/uc?export=view&id=1g4jgzeXkH3zMsmkI9-QeyvUauij6w8s8"
+    },
+    {
+      addr: "TDn6PnLoLUEkHXeLhidLBZkG3GGAE3P9rx",
+      qr: "https://drive.google.com/uc?export=view&id=1NhUxPrETwOUaE0Zd4ldYl-mfUfz-ibQ7"
+    },
+    {
+      addr: "TEmSZTCPNX39gV6TzjkV6E1VfWDSki3ZH2",
+      qr: "https://drive.google.com/uc?export=view&id=1KXdShTdDyGZqkMaS7hCwV2hHupFBQerd"
+    },
+    {
+      addr: "TSN3pesxHUgEQPbxP8JrXdfRMLjV4ebuMG",
+      qr: "https://drive.google.com/uc?export=view&id=1tOPkTYT2eKUjQvuzhmm0I5cv6wtcB2Dc"
+    },
+    {
+      addr: "TQ2ty2HKtNmwUvu4WLJKk1yfVWmWYi4sJ8",
+      qr: "https://drive.google.com/uc?export=view&id=1uLCjShVYPv92ek8bfzJxLi2x9BlQpM2s"
+    },
+    {
+      addr: "TEkJ7BQT4VjHYUU9eAo9RjGXZRMVDM4KpZ",
+      qr: "https://drive.google.com/uc?export=view&id=1kHJ3ALtmKlgLxrrOd4e96kwekoNvYzUB"
+    },
+    {
+      addr: "TEjuiWgUTRFyDdL86TgoaVqTmNdyD1Sgsx",
+      qr: "https://drive.google.com/uc?export=view&id=1Koko_zbqzxmckeMbOk4aqrDFlxB18lQS"
+    },
+    {
+      addr: "TYE4FMXGPREzLu5p234oMwbyyiCnQY9A8s",
+      qr: "https://drive.google.com/uc?export=view&id=1qEUiov3JurS4re8P2tyu1I6dSbBJDcLW"
+    },
+    {
+      addr: "TGkNU2rDADm7RjTZH8797zFXhmr5JGyuxX",
+      qr: "https://drive.google.com/uc?export=view&id=1canPEyg5j8H3HXL5TxIDGUeWlbFVUkXq"
+    },
+    {
+      addr: "TSov2GeUj3mv6jqmjiGXJgFVpWbA56SdQw",
+      qr: "https://drive.google.com/uc?export=view&id=1ra0nFh75oXVhzPPMWJZ3sV9SusENhp1a"
+    },
+    {
+      addr: "THUkm4qEuuxogd6FRtm5jWkiwznjJLFNaT",
+      qr: "https://drive.google.com/uc?export=view&id=11C4RRSi5k9OjqrNp0FDD_nJIXnoAv61R"
+    }
+  ];
+
+  // Get URL param ?no=0 ~ ?no=11
+  function getQueryParam(param) {
+    const url = new URL(window.location.href);
+    return url.searchParams.get(param);
+  }
+
+  // Select address based on param
+  let index = parseInt(getQueryParam("no"));
+  if (isNaN(index) || index < 0 || index >= addresses.length) index = 0;
+
+  const {addr, qr} = addresses[index];
+  document.getElementById("main").innerHTML = `
+    <div>
+      <strong>Wallet Address / वॉलेट पता:</strong><br/>
+      <span class="address">${addr}</span>
+      <div class="qrcode"><img src="${qr}" alt="QR Code" style="max-width:280px;"></div>
+    </div>
+  `;
+</script>
+</body>
+</html>
