@@ -24,11 +24,9 @@
     SICBO गेम जमा पृष्ठ
   </h2>
   <div class="subtitle">
-    Please use your assigned wallet address below to complete your deposit.<br>
     Double check the QR code and address before sending any funds.
   </div>
   <div class="subtitle-hindi">
-    कृपया नीचे दिए गए अपने विशेष वॉलेट पते का उपयोग करके जमा करें।<br>
     पैसे भेजने से पहले QR कोड और पते की अच्छी तरह से जाँच करें।
   </div>
   <div class="address-block" id="main"></div>
@@ -51,56 +49,20 @@
   </div>
 </div>
 <script>
-  // 12 addresses & QR images
+  // 12 addresses & QR images，依你圖片順序100%對應
   const addresses = [
-    {
-      addr: "TUJCqr2sCSgcBUrotRTtpjeJoWsR6KDnP6",
-      qr: "https://drive.google.com/uc?export=view&id=1UWSG6W0jSgVrqrw_cwEradSThJ_7OBlI"
-    },
-    {
-      addr: "TPZHdSd8tucwf3gWKbccdNorfAM5y4TNY5",
-      qr: "https://drive.google.com/uc?export=view&id=1g4jgzeXkH3zMsmkI9-QeyvUauij6w8s8"
-    },
-    {
-      addr: "TDn6PnLoLUEkHXeLhidLBZkG3GGAE3P9rx",
-      qr: "https://drive.google.com/uc?export=view&id=1NhUxPrETwOUaE0Zd4ldYl-mfUfz-ibQ7"
-    },
-    {
-      addr: "TEmSZTCPNX39gV6TzjkV6E1VfWDSki3ZH2",
-      qr: "https://drive.google.com/uc?export=view&id=1KXdShTdDyGZqkMaS7hCwV2hHupFBQerd"
-    },
-    {
-      addr: "TSN3pesxHUgEQPbxP8JrXdfRMLjV4ebuMG",
-      qr: "https://drive.google.com/uc?export=view&id=1tOPkTYT2eKUjQvuzhmm0I5cv6wtcB2Dc"
-    },
-    {
-      addr: "TQ2ty2HKtNmwUvu4WLJKk1yfVWmWYi4sJ8",
-      qr: "https://drive.google.com/uc?export=view&id=1uLCjShVYPv92ek8bfzJxLi2x9BlQpM2s"
-    },
-    {
-      addr: "TEkJ7BQT4VjHYUU9eAo9RjGXZRMVDM4KpZ",
-      qr: "https://drive.google.com/uc?export=view&id=1kHJ3ALtmKlgLxrrOd4e96kwekoNvYzUB"
-    },
-    {
-      addr: "TEjuiWgUTRFyDdL86TgoaVqTmNdyD1Sgsx",
-      qr: "https://drive.google.com/uc?export=view&id=1Koko_zbqzxmckeMbOk4aqrDFlxB18lQS"
-    },
-    {
-      addr: "TYE4FMXGPREzLu5p234oMwbyyiCnQY9A8s",
-      qr: "https://drive.google.com/uc?export=view&id=1qEUiov3JurS4re8P2tyu1I6dSbBJDcLW"
-    },
-    {
-      addr: "TGkNU2rDADm7RjTZH8797zFXhmr5JGyuxX",
-      qr: "https://drive.google.com/uc?export=view&id=1canPEyg5j8H3HXL5TxIDGUeWlbFVUkXq"
-    },
-    {
-      addr: "TSov2GeUj3mv6jqmjiGXJgFVpWbA56SdQw",
-      qr: "https://drive.google.com/uc?export=view&id=1ra0nFh75oXVhzPPMWJZ3sV9SusENhp1a"
-    },
-    {
-      addr: "THUkm4qEuuxogd6FRtm5jWkiwznjJLFNaT",
-      qr: "https://drive.google.com/uc?export=view&id=11C4RRSi5k9OjqrNp0FDD_nJIXnoAv61R"
-    }
+    { addr: "TUJCqr2sCSgcBUrotRTtpjeJoWsR6KDnP6",    qr: "https://i.postimg.cc/G8ZSWqKJ/1.jpg" },
+    { addr: "TSN3pesxHUgEQPbxP8JrXdfRMLjV4ebuMG",    qr: "https://i.postimg.cc/hzJ5ZHLt/2.jpg" },
+    { addr: "TQ2ty2HKtNmwUvu4WLJKk1yfVWmWYi4sJ8",    qr: "https://i.postimg.cc/9wZNCZN3/3.jpg" },
+    { addr: "TEkJ7BQT4VjHYUU9eAo9RjGXZRMVDM4KpZ",    qr: "https://i.postimg.cc/6TvPrx6H/4.jpg" },
+    { addr: "TEjuiWgUTRFyDdL86TgoaVqTmNdyD1Sgsx",    qr: "https://i.postimg.cc/TKCNdRQP/5.jpg" },
+    { addr: "TYE4FMXGPREzLu5p234oMwbyyiCnQY9A8s",    qr: "https://i.postimg.cc/nCKwWKDB/6.jpg" },
+    { addr: "TGkNU2rDADm7RjTZH8797zFXhmr5JGyuxX",    qr: "https://i.postimg.cc/hXS3RJLw/7.jpg" },
+    { addr: "TSov2GeUj3mv6jqmjiGXJgFVpWbA56SdQw",    qr: "https://i.postimg.cc/PLJ3NBFQ/8.jpg" },
+    { addr: "THUkm4qEuuxogd6FRtm5jWkiwznjJLFNaT",    qr: "https://i.postimg.cc/d7fWC4bP/9.jpg" },
+    { addr: "TPZHdSd8tucwf3gWKbccdNorfAM5y4TNY5",    qr: "https://i.postimg.cc/47hWQpGK/10.jpg" },
+    { addr: "TDn6PnLoLUEkHXeLhidLBZkG3GGAE3P9rx",    qr: "https://i.postimg.cc/zHZ0t3Dx/11.jpg" },
+    { addr: "TEmSZTCPNX39gV6TzjkV6E1VfWDSki3ZH2",    qr: "https://i.postimg.cc/CnGJWYzS/12.jpg" }
   ];
 
   function getQueryParam(param) {
@@ -122,3 +84,4 @@
 </script>
 </body>
 </html>
+
