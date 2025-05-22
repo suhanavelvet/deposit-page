@@ -181,40 +181,46 @@
     { addr: "TEmSZTCPNX39gV6TzjkV6E1VfWDSki3ZH2", qr: "https://i.postimg.cc/CnGJWYzS/12.jpg" }
   ];
 
-  function getQueryParam(param) {
-    const url = new URL(window.location.href);
-    return url.searchParams.get(param);
-  }
-  let index = parseInt(getQueryParam("no"));
-  if (isNaN(index) || index < 0 || index >= addresses.length) index = 0;
-  const {addr, qr} = addresses[index];
-  document.getElementById("main").innerHTML = `
-    <div>
-      <strong>Wallet Address / वॉलेट पता:</strong><br/>
-      <span class="address">${addr}</span>
-      <div class="qrcode">
-        <img src="${qr}" alt="QR Code" style="max-width:220px;max-height:220px;display:block;margin:auto;">
-      </div>
-    </div>
-  `;
+function getQueryParam(param) {
+  const url = new URL(window.location.href);
+  return url.searchParams.get(param);
+}
 
-  // 新增回函&TG指令功能
-  document.getElementById("submit-btn").onclick = function() {
-    const amount = document.getElementById("amount").value;
-    const no = index;
-    const tgCmd = `/deposit ${amount} ${no}`;
-    document.getElementById("reply").style.display = "block";
-    document.getElementById("reply").innerHTML =
-      "Please confirm that you have transferred USDT to the above address.<br>" +
-      "We will credit your account as soon as we receive your deposit.<br><br>" +
-      "<b>To speed up the process, please copy and send the following command to our Telegram bot:</b><br>" +
-      `<code>${tgCmd}</code><br><br>` +
-      "कृपया सुनिश्चित करें कि आपने ऊपर दिए गए पते पर USDT ट्रांसफर कर दिया है।<br>" +
-      "जैसे ही हमें आपका डिपॉजिट मिलेगा, हम तुरंत आपका अकाउंट क्रेडिट करेंगे।<br><br>" +
-      "<b>प्रक्रिया को तेज़ करने के लिए, कृपया नीचे दिए गए कमांड को कॉपी करके हमारे Telegram बोट को भेजें:</b><br>" +
-      `<code>${tgCmd}</code>`;
-    document.getElementById("amount").value = "";
-  }
+// 這裡 index 就是你網頁網址裡 no=幾，那一頁分配的號碼
+let index = parseInt(getQueryParam("no"));
+if (isNaN(index) || index < 0 || index >= addresses.length) index = 0;
+
+// 顯示對應的錢包地址與QR
+const {addr, qr} = addresses[index];
+document.getElementById("main").innerHTML = `
+  <div>
+    <strong>Wallet Address / वॉलेट पता:</strong><br/>
+    <span class="address">${addr}</span>
+    <div class="qrcode">
+      <img src="${qr}" alt="QR Code" style="max-width:220px;max-height:220px;display:block;margin:auto;">
+    </div>
+  </div>
+`;
+
+// 按下Submit時，讓指令帶正確index
+document.getElementById("submit-btn").onclick = function() {
+  const amount = document.getElementById("amount").value;
+  const tgCmd = `/deposit ${amount} ${index}`;  // 這一行會自動帶正確分頁號碼
+
+  document.getElementById("reply").style.display = "block";
+  document.getElementById("reply").innerHTML =
+    "Please confirm that you have transferred USDT to the above address.<br>" +
+    "We will credit your account as soon as we receive your deposit.<br><br>" +
+    "<b>To speed up the process, please copy and send the following command to our Telegram bot:</b><br>" +
+    `<code>${tgCmd}</code><br><br>` +
+    "कृपया सुनिश्चित करें कि आपने ऊपर दिए गए पते पर USDT ट्रांसफर कर दिया है।<br>" +
+    "जैसे ही हमें आपका डिपॉजिट मिलेगा, हम तुरंत आपका अकाउंट क्रेडिट करेंगे।<br><br>" +
+    "<b>प्रक्रिया को तेज़ करने के लिए, कृपया नीचे दिए गए कमांड को कॉपी करके हमारे Telegram बोट को भेजें:</b><br>" +
+    `<code>${tgCmd}</code>`;
+
+  document.getElementById("amount").value = "";
+};
+  
 </script>
 </body>
 </html>
